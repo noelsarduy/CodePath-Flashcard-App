@@ -4,14 +4,10 @@
 ## Lab 1
 
 ### App Description
-`TODO://` Add app description
+Flashcard app that has only one question, and three multiple choice options. Clicking on the question provides a hint, and clicking on the answers provide the correct answer highlighted in green. Users can reset the state of the answers and hide/show the multiple choices.
 
-### App Walk-though
-`TODO://` Add the URL to your animated app walk-though `gif` in the image tag below. Make sure the gif actually renders and animates when viewing this README. (☝️ Remove this paragraph after after adding gif)
-
-<img src="YOUR_GIF_URL_HERE" width=200><br>
-
-`TODO://` In the User stories section below, add an `x` between the `-[ ]` like this `- [x]` for any user story you complete. (☝️ Remove this paragraph after after checking off user stories)
+### App Walk-through
+<img src="https://i.imgur.com/duZZ57N.gif" width=200><br>
 
 ## Required
 - [x] Create New Project in Android Studio
