@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF400"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/flashcard_question"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/flashcard_shapes"
+        android:elevation="20dp"
+        android:text="An user defined prototype from which objects are created. It represents the set of properties or methods that are common to all objects of one type."
+        android:textSize="25sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/flashcard_hint"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="150dp"
+        android:elevation="20dp"
+        android:background="@drawable/flashcard_shapes"
+        android:text="HINT: You can build upon it by adding more properties and methods"
+        android:visibility="invisible"
+        android:textSize="25sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/flashcard_answer_1"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:background="@color/teal_200"
+        android:text="Class"
+        android:textSize="20sp"
+
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/flashcard_answer_2"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="460dp"
+        android:background="@color/teal_200"
+        android:text="Method"
+        android:textSize="20sp"
+
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/flashcard_answer_3"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="520dp"
+        android:background="@color/teal_200"
+        android:text="Constructor"
+        android:textSize="20sp"
+
+        android:gravity="center"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="650dp"
+        android:id="@+id/toggle_choices_visibility"
+        android:src="@drawable/ic_iconmonstr_eye_9"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="650dp"
+        android:id="@+id/toggle_choices_invisibility"
+        android:src="@drawable/ic_iconmonstr_eye_10"/>
+
+
+
+</RelativeLayout>
