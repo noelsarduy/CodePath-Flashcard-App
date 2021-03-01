@@ -25,7 +25,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="150dp"
         android:elevation="20dp"
-        android:background="@drawable/flashcard_shapes"
+        android:background="@drawable/flashcard_shapes_hint"
         android:text="HINT: You can build upon it by adding more properties and methods"
         android:visibility="invisible"
         android:textSize="25sp"
