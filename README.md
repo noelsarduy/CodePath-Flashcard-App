@@ -7,7 +7,7 @@
 Flashcard app that has only one question, and three multiple choice options. Clicking on the question provides a hint, and clicking on the answers provide the correct answer highlighted in green. Users can reset the state of the answers and hide/show the multiple choices.
 
 ### App Walk-through
-<img src="https://i.imgur.com/duZZ57N.gif" width=200><br>
+<img src="https://imgur.com/1nmvzyh" width=200><br>
 
 ## Required
 - [x] Create New Project in Android Studio
