@@ -83,6 +83,24 @@
         android:id="@+id/toggle_choices_invisibility"
         android:src="@drawable/ic_iconmonstr_eye_10"/>
 
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="640dp"
+        android:id="@+id/page_next"
+        android:src="@drawable/ic_baseline_add_circle_outline_24"
+        />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="640dp"
+        android:id="@+id/page_edit"
+        android:src="@drawable/ic_sharp_edit_24"
+        />
+
 
 
 </RelativeLayout>
