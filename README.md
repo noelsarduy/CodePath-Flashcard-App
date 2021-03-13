@@ -16,7 +16,7 @@
 - [X] User can also enter multiple choice answers when creating a card
 - [X] App is further styled and customized!
 
-<img src="https://i.imgur.com/yEEQCGQ.mp4" width="200" height="400" />  
+<img src="Noel's_FlashCard_App_3GIF.gif" width="200" height="400" />  
 
 ## Lab 1
 
