@@ -10,12 +10,93 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    FlashcardDatabase flashcardDatabase;
+    List<Flashcard> allFlashcards;
+    int currentCardDisplayedIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        flashcardDatabase = new FlashcardDatabase(getApplicationContext());
+
+        allFlashcards = flashcardDatabase.getAllCards();
+
+
+        if (allFlashcards != null && allFlashcards.size() > 0){
+            ((TextView) findViewById(R.id.flashcard_question)).setText(allFlashcards.get(0).getQuestion());
+            ((TextView) findViewById(R.id.flashcard_hint)).setText(allFlashcards.get(0).getHint());
+            ((TextView) findViewById(R.id.flashcard_answer_1)).setText(allFlashcards.get(0).getAnswer());
+            ((TextView) findViewById(R.id.flashcard_answer_2)).setText(allFlashcards.get(0).getWrongAnswer1());
+            ((TextView) findViewById(R.id.flashcard_answer_3)).setText(allFlashcards.get(0).getWrongAnswer2());
+        }
+
+        findViewById(R.id.flashcard_next).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (allFlashcards.size() == 0) {
+                    return;
+                }
+
+                // advance our pointer index so we can show the next card
+                if (currentCardDisplayedIndex < allFlashcards.size() - 1) {
+                    currentCardDisplayedIndex++;
+                } else {
+                    currentCardDisplayedIndex = 0;
+                }
+
+                Flashcard flashcard = allFlashcards.get(currentCardDisplayedIndex);
+                allFlashcards = flashcardDatabase.getAllCards();
+
+                ((TextView) findViewById(R.id.flashcard_question)).setText(flashcard.getQuestion());
+                ((TextView) findViewById(R.id.flashcard_hint)).setText(flashcard.getHint());
+                ((TextView) findViewById(R.id.flashcard_answer_1)).setText(flashcard.getAnswer());
+                ((TextView) findViewById(R.id.flashcard_answer_2)).setText(flashcard.getWrongAnswer1());
+                ((TextView) findViewById(R.id.flashcard_answer_3)).setText(flashcard.getWrongAnswer2());
+                // set the question and answer TextViews with data from the database
+            }
+        });
+
+        findViewById(R.id.flashcard_trash).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcard_question)).getText().toString());
+                allFlashcards = flashcardDatabase.getAllCards();
+
+                if (allFlashcards.size() == 0) {
+                    ((TextView) findViewById(R.id.flashcard_question)).setText("No flashcards left. Create a new one!");
+                    ((TextView) findViewById(R.id.flashcard_hint)).setText("Press + to create a new flashcard!");
+                    ((TextView) findViewById(R.id.flashcard_answer_1)).setText("No flashcards left. Create a new one!");
+                    ((TextView) findViewById(R.id.flashcard_answer_2)).setText("Press + to create a new flashcard!");
+                    ((TextView) findViewById(R.id.flashcard_answer_3)).setText("No flashcards left. Create a new one!");
+
+
+                    findViewById(R.id.flashcard_answer_1).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.flashcard_answer_2).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.flashcard_answer_3).setVisibility(View.INVISIBLE);
+                } else {
+                    currentCardDisplayedIndex--;
+
+                    if (currentCardDisplayedIndex == -1) {
+                        currentCardDisplayedIndex = allFlashcards.size() - 1;
+                    }
+
+                    Flashcard flashcard = allFlashcards.get(currentCardDisplayedIndex);
+                    ((TextView) findViewById(R.id.flashcard_question)).setText(flashcard.getQuestion());
+                    ((TextView) findViewById(R.id.flashcard_hint)).setText(flashcard.getHint());
+                    ((TextView) findViewById(R.id.flashcard_answer_1)).setText(flashcard.getAnswer());
+                    ((TextView) findViewById(R.id.flashcard_answer_2)).setText(flashcard.getWrongAnswer1());
+                    ((TextView) findViewById(R.id.flashcard_answer_3)).setText(flashcard.getWrongAnswer2());
+                }
+            }
+        });
 
         findViewById(R.id.flashcard_answer_1).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +210,16 @@ public class MainActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.flashcard_answer_3)).setText(incorrectAnswer_2);
             ((TextView) findViewById(R.id.flashcard_hint)).setText(hint);
 
+            flashcardDatabase.insertCard(new Flashcard(question, hint, correctAnswer, incorrectAnswer_1, incorrectAnswer_2));
+            allFlashcards = flashcardDatabase.getAllCards();
+            currentCardDisplayedIndex = allFlashcards.size() - 1;
+
+            if(allFlashcards.size() == 1){
+                findViewById(R.id.flashcard_answer_1).setVisibility(View.VISIBLE);
+                findViewById(R.id.flashcard_answer_2).setVisibility(View.VISIBLE);
+                findViewById(R.id.flashcard_answer_3).setVisibility(View.VISIBLE);
+            }
+
             Snackbar.make(findViewById(R.id.flashcard_question),
                     "Card added successfully",
                     Snackbar.LENGTH_SHORT)
@@ -136,4 +227,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
 }

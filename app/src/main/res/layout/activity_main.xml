@@ -24,12 +24,12 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="150dp"
-        android:elevation="20dp"
         android:background="@drawable/flashcard_shapes_hint"
+        android:elevation="20dp"
+        android:gravity="center"
         android:text="HINT: You can build upon it by adding more properties and methods"
-        android:visibility="invisible"
         android:textSize="25sp"
-        android:gravity="center"/>
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/flashcard_answer_1"
@@ -100,6 +100,25 @@
         android:id="@+id/page_edit"
         android:src="@drawable/ic_sharp_edit_24"
         />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/flashcard_next"
+        android:src="@drawable/ic_outline_keyboard_arrow_right_24"
+        />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/flashcard_trash"
+        android:src="@drawable/ic_sharp_delete_forever_24"
+        />
+
 
 
 

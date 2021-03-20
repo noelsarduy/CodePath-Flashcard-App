@@ -20,7 +20,7 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dp"
         android:hint="Enter Question"
         android:id="@+id/question_edit_text"
         />
@@ -29,7 +29,7 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="150dp"
         android:hint="Enter Hint"
         android:id="@+id/hint_edit_text"
         />
@@ -37,7 +37,7 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="250dp"
         android:hint="Enter Correct Answer"
         android:id="@+id/correct_answer_edit_text"
         />
@@ -45,7 +45,7 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="300dp"
         android:hint="Enter an Incorrect Answer"
         android:id="@+id/incorrect_answer_1_edit_text"
         />
@@ -53,7 +53,7 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="350dp"
         android:hint="Enter Another Incorrect Answer"
         android:id="@+id/incorrect_answer_2_edit_text"
         />
