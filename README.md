@@ -7,7 +7,7 @@ Added ability to save cards, delete cards and browse between saved cards.
 
 ### App Walk-though
 
-<img src=https://i.imgur.com/CdD1z7c.gif width=200><br>
+<img src="Noel's_FlashCard_App_4.1GIF.gif" width=200><br>
 
 
 ## Required
