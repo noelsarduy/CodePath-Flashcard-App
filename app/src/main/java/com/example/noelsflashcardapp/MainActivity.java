@@ -2,9 +2,13 @@ package com.example.noelsflashcardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -58,20 +62,40 @@ public class MainActivity extends AppCompatActivity {
                 int prevDisplayIndex = currentCardDisplayedIndex;
                 currentCardDisplayedIndex = getRandomNumber(0, allFlashcards.size() - 1);
 
-                if(currentCardDisplayedIndex==prevDisplayIndex && currentCardDisplayedIndex != 0){
-                    currentCardDisplayedIndex = (allFlashcards.size() - 1)%currentCardDisplayedIndex;
+                while(currentCardDisplayedIndex==prevDisplayIndex){
+                    currentCardDisplayedIndex = getRandomNumber(0, allFlashcards.size() - 1);
 
                 }
 
                 Flashcard flashcard = allFlashcards.get(currentCardDisplayedIndex);
                 allFlashcards = flashcardDatabase.getAllCards();
 
-                ((TextView) findViewById(R.id.flashcard_question)).setText(flashcard.getQuestion());
-                ((TextView) findViewById(R.id.flashcard_hint)).setText(flashcard.getHint());
-                ((TextView) findViewById(R.id.flashcard_answer_1)).setText(flashcard.getAnswer());
-                ((TextView) findViewById(R.id.flashcard_answer_2)).setText(flashcard.getWrongAnswer1());
-                ((TextView) findViewById(R.id.flashcard_answer_3)).setText(flashcard.getWrongAnswer2());
                 // set the question and answer TextViews with data from the database
+                final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.left_out);
+                final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.right_in);
+                findViewById(R.id.flashcard_question).startAnimation(leftOutAnim);
+                leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        // this method is called when the animation first starts
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        // this method is called when the animation is finished playing
+                        ((TextView) findViewById(R.id.flashcard_question)).setText(flashcard.getQuestion());
+                        ((TextView) findViewById(R.id.flashcard_hint)).setText(flashcard.getHint());
+                        ((TextView) findViewById(R.id.flashcard_answer_1)).setText(flashcard.getAnswer());
+                        ((TextView) findViewById(R.id.flashcard_answer_2)).setText(flashcard.getWrongAnswer1());
+                        ((TextView) findViewById(R.id.flashcard_answer_3)).setText(flashcard.getWrongAnswer2());
+                        findViewById(R.id.flashcard_question).startAnimation(rightInAnim);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        // we don't need to worry about this method
+                    }
+                });
             }
         });
 
@@ -146,8 +170,27 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.flashcard_question).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.flashcard_hint).setVisibility(View.VISIBLE);
-                findViewById(R.id.flashcard_question).setVisibility(View.INVISIBLE);
+                // findViewById(R.id.flashcard_hint).setVisibility(View.VISIBLE);
+                // findViewById(R.id.flashcard_question).setVisibility(View.INVISIBLE);
+                View questionSideView = findViewById(R.id.flashcard_question);
+                View answerSideView = findViewById(R.id.flashcard_hint);
+
+// get the center for the clipping circle
+                int cx = answerSideView.getWidth() / 2;
+                int cy = answerSideView.getHeight() / 2;
+
+// get the final radius for the clipping circle
+                float finalRadius = (float) Math.hypot(cx, cy);
+
+// create the animator for this view (the start radius is zero)
+                Animator anim = ViewAnimationUtils.createCircularReveal(answerSideView, cx, cy, 0f, finalRadius);
+
+// hide the question and show the answer to prepare for playing the animation!
+                questionSideView.setVisibility(View.INVISIBLE);
+                answerSideView.setVisibility(View.VISIBLE);
+
+                anim.setDuration(3000);
+                anim.start();
             }
         });
 
@@ -206,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("incorrectAnswer_2", ((TextView) findViewById(R.id.flashcard_answer_3)).getText().toString());
                 setResult(RESULT_OK, intent); // set result code and bundle data for response
                 MainActivity.this.startActivityForResult(intent, EDIT_CARD_REQUEST_CODE);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
 
