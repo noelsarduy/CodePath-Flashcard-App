@@ -7,7 +7,7 @@ Added ability to save cards, delete cards and browse between saved cards.
 
 ### App Walk-though
 
-<img src=https://i.imgur.com/CdD1z7c.gif width=200><br>
+<img src="Noel's_FlashCard_App_4.1GIF.gif" width=200><br>
 
 
 ## Required
@@ -16,8 +16,8 @@ Added ability to save cards, delete cards and browse between saved cards.
 
 ## Optional
 - [X] User can delete a card and no longer see it in their deck anymore
-- [ ] Flashcards are shown in random order instead of the order they were created in
-- [ ] User can edit a card and see the edit saved when they browse through their deck of cards
+- [X] Flashcards are shown in random order instead of the order they were created in
+- [X] User can edit a card and see the edit saved when they browse through their deck of cards
 - [X] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
 
 # Lab 2
